@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+
+
+    List<NewsRealease.DAL.MODEL.NewsShow> news = new List<NewsRealease.DAL.MODEL.NewsShow>();
+    if (ViewData["news"] != null)
+    {
+        news = ViewData["news"] as List<NewsRealease.DAL.MODEL.NewsShow>;
+    }        
+}
+
+<div class="col-md-5">
+    <h2 class="text-center">校内新闻</h2>
+    <div>
+        <ul class="list-group">
+            @foreach (NewsRealease.DAL.MODEL.NewsShow n in news)
+            {
+                <li class="list-group-item">@Html.ActionLink(n.news_title, "NewsDetailView", "Home", new { newsID = n.news_id }, new { })-------时间：@n.news_time.ToString()</li>    
+            }
+        </ul>
+    </div>
+</div>

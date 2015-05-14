@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "ModifyNewsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    NewsRealease.DAL.MODEL.NewsShow news = new NewsRealease.DAL.MODEL.NewsShow();
+    if (ViewData["news"] != null)
+    {
+        news = ViewData["news"] as NewsRealease.DAL.MODEL.NewsShow;
+    }
+}
+
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: "textareas",
+        theme: "modern",
+        language: "zh_CN",
+        //TinyMCE 会将所有的 font 元素转换成 span 元素
+        //convert_fonts_to_spans: true,
+        //换行符会被转换成 br 元素
+        convert_newlines_to_brs: false,
+        //在换行处 TinyMCE 会用 BR 元素而不是插入段落
+        force_br_newlines: false,
+        //当返回或进入 Mozilla/Firefox 时，这个选项可以打开/关闭段落的建立
+        force_p_newlines: false,
+        //这个选项控制是否将换行符从输出的 HTML 中去除。选项默认打开，因为许多服务端系统将换行转换成 <br />，因为文本是在无格式的 textarea 中输入的。使用这个选项可以让所有内容在同一行。
+        remove_linebreaks: false,
+        //默认使用绝对路径
+        //relative_urls: false,
+        //不允许拖动大小
+        resize: true,
+
+        font_formats: "宋体=宋体;黑体=黑体;仿宋=仿宋;楷体=楷体;隶书=隶书;幼圆=幼圆;Arial=arial,helvetica,sans-serif;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Tahoma=tahoma,arial,helvetica,sans-serif;Times New Roman=times new roman,times;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats",
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt"
+    });
+
+</script>
+
+<input type="hidden" id="news_id" name="news_id" value="@news.news_id" />
+<div class="container content-main">
+
+    <div class="row ">
+        <div style="height: 10px"></div>
+
+        <!--顶层开始 start-->
+        <div class="row">
+
+            <div class="form-horizontal">
+
+                <!--一行开始 start-->
+                <div class="form-group col-md-6">
+                    <label for="1" class="col-sm-3 control-label">新闻标题</label>
+                    <div class="col-md-9">
+                        <p class="input-group">
+                            <span class="input-group-addon">：
+                            </span>
+                            <input class="form-control" type="text" name="news_title" id="news_title" value="@news.news_title">
+                        </p>
+                    </div>
+                </div>
+                <!--一行结束  end-->
+
+                <!--一行开始 start-->
+                <div class="form-group col-md-6">
+                    <label for="1" class="col-sm-3 control-label">新闻类型</label>
+                    <div class="col-md-9">
+                        <p class="input-group">
+                            <span class="input-group-addon">：
+                            </span>
+                            @Html.DropDownList("type_id", ViewData["type"] as SelectList, new { @class = "form-control" })
+                        </p>
+                    </div>
+                </div>
+                <!--一行结束  end-->
+
+            </div>
+        </div>
+        <!--顶层结束 end-->
+
+        <div class="hrdivblack"></div>
+
+        <!--底层开始  start 这个层只用于方在线编辑器-->
+        <div class="row">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-5">
+                    <span class="text-center">通知内容</span>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-left: 25px;">
+                <textarea rows="20" cols="178" name="news_content" id="news_content" style="width: 800px; height: 400px;">
+            @Html.Raw(news.news_content)
+          </textarea>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2 col-md-offset-11">
+                    <button type="button" onclick="ModifyNote()" class="btn btn-primary">修改</button>
+                </div>
+
+            </div>
+
+        </div>
+        <!--底层结束 end-->
+    </div>
+
+    <input type="hidden" value="14" name="u_id" id="u_id" />
+</div>
+<script type="text/javascript">
+    function ModifyNote() {
+        var news_id = $("#news_id").val();
+        var news_title = $("#news_title").val();
+        var news_content = tinyMCE.activeEditor.getContent();
+        var type_id = $("#type_id").val();        
+        if (news_title == null || news_title == "") {
+            alert("请输入标题");
+            return;
+        }
+        if (news_content == null || news_content == "") {
+            alert("请输入正文");
+            return;
+        }        
+        $.ajax({
+            type: "Post",
+            url: "/News/ChgNews",
+            data: { newsID: news_id, news_title: news_title, news_content: news_content, type_id: type_id },
+            success: function (data) {
+                alert(data);
+            },
+            error: function (data) {
+                alert("失败啦"+data);
+            }
+        });
+    }
+
+</script>
+

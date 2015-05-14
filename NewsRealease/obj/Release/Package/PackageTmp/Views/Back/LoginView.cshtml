@@ -1,0 +1,153 @@
+﻿@{
+    Layout = null;//"~/Views/Shared/_Layout.cshtml";
+}
+@*<meta name="viewport" content="width=device-width" />*@
+
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>大作业后台网站管理</title>
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/js/helper.js"></script>
+    <script src="~/Scripts/js/bootstrap.js"></script>
+
+    @*<script src="~/Scripts/js/html5.js"></script>*@
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/manager.css" rel="stylesheet" />
+
+    <style type="text/css" media="screen">
+        body {
+            background-image: url(/Images/img/login_bg.jpg);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-6 col-md-6 col-md-offset-3">
+            <div class="fenge"></div>
+            <div class="fenge"></div>
+            <div class="jumbotron color-white border-circle">
+                <h2 class="text-center -font-family">网站管理</h2>
+                <div class="hrdivblack"></div>
+                @* <form class="form-horizontal" role="form" onsubmit="return false;">*@
+                @using (Ajax.BeginForm("Login", "Back", new AjaxOptions { HttpMethod = "Post", OnSuccess = "call_ckeck_login(data)" }, new { @class = "form-horizontal", @id = "form1" }))
+                {                   
+                    <div class="fenge"></div>
+                    <div class="fenge"></div>
+
+                    <div class="form-group">
+                        <label for="useraccount" class="col-sm-2 control-label">账户：</label>
+                        <div class="col-md-8">
+                            <p class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" class="form-control" id="useraccount" name="useraccount" value="candr" placeholder="请输入账号">
+                                <label id="accounterror" class="input-group-addon small color-white">*</label>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">密码：</label>
+                        <div class="col-md-8">
+                            <p class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-eye-close"></span>
+                                </span>
+                                <input type="password" class="form-control" name="password" id="password" value="123" placeholder="请输入密码">
+                                <label id="passworderror" class="input-group-addon small color-white">*</label>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-9 col-sm-10">
+                            <button type="button" class="btn btn-default nav-line-color" onclick="FormBegin()">
+                                <span class="glyphicon glyphicon-hand-down"></span>
+                                登录
+                            </button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!--留言表单 end-->
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    $(function () {
+
+        //检查是否存在账号
+        $("#useraccount").blur(function (event) {
+            var user_account = $("#useraccount").val();
+            //console.log(user_account);
+            if (user_account.length <= 0) {
+                $("#accounterror").text("请填写账号");
+            } else {
+                var post_data = { account: user_account };
+                ajax_post(post_data, '__CONTROLLER__/check_account', call_check_account, 'json');
+            }
+
+        });
+
+        $("#password").blur(function (event) {
+            var password = $("#password").val();
+            if (password.length <= 0) {
+                $("#passworderror").text('请填写密码');
+            } else {
+                $("#passworderror").text(" ").html("<span class='glyphicon glyphicon-ok'></span>");
+            }
+        });
+
+    });
+
+
+    //检查账号回调函数
+    function call_check_account(data) {
+        alert("函数执行结束了" + data);
+        var flag = data.flag;
+        if (flag == true) {
+            if (!data.message) {
+                $("#accounterror").text(" ").html("<span class='glyphicon glyphicon-ok'></span>");
+                return 0;
+            } else {
+                $("#accounterror").text(data.message);
+            }
+        } else {
+            $("#accounterror").text(data.message);
+        }
+    }
+
+    function FormBegin() {
+        var user_account = $("#useraccount").val();
+        if (user_account.length <= 0) {
+            alert("请填写账号");
+            return false;
+        }
+        var password = $("#password").val();
+        if (password.length <= 0) {
+            alert('请填写密码');
+            return false;
+        }
+        $("#form1").submit();
+    }
+
+    function call_ckeck_login(data) {
+        
+        if (data == "True") {
+            document.location = "/Back/Index";
+        }
+        $("#useraccount").val("");
+        $("#password").val("");
+    }
+
+</script>
+</html>

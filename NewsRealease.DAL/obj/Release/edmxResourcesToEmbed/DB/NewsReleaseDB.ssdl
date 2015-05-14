@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewsRealeaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NewsRealeaseModelStoreContainer">
+    <EntitySet Name="News" EntityType="NewsRealeaseModel.Store.News" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NewsType" EntityType="NewsRealeaseModel.Store.NewsType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="NewsRealeaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_NEWS_REFERENCE_NEWSTYPE" Association="NewsRealeaseModel.Store.FK_NEWS_REFERENCE_NEWSTYPE">
+      <End Role="NewsType" EntitySet="NewsType" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_REFERENCE_USERS" Association="NewsRealeaseModel.Store.FK_NEWS_REFERENCE_USERS">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="news_title" Type="varchar" MaxLength="50" />
+    <Property Name="news_content" Type="text" />
+    <Property Name="news_time" Type="varchar" MaxLength="30" />
+    <Property Name="news_flag" Type="int" />
+  </EntityType>
+  <EntityType Name="NewsType">
+    <Key>
+      <PropertyRef Name="type_id" />
+    </Key>
+    <Property Name="type_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type_name" Type="varchar" MaxLength="30" />
+    <Property Name="type_flag" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_loginName" Type="varchar" MaxLength="50" />
+    <Property Name="user_psw" Type="varchar" MaxLength="50" />
+    <Property Name="user_realName" Type="varchar" MaxLength="50" />
+    <Property Name="user_flag" Type="int" />
+  </EntityType>
+  <Association Name="FK_NEWS_REFERENCE_NEWSTYPE">
+    <End Role="NewsType" Type="NewsRealeaseModel.Store.NewsType" Multiplicity="0..1" />
+    <End Role="News" Type="NewsRealeaseModel.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsType">
+        <PropertyRef Name="type_id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_REFERENCE_USERS">
+    <End Role="Users" Type="NewsRealeaseModel.Store.Users" Multiplicity="0..1" />
+    <End Role="News" Type="NewsRealeaseModel.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewsRealeaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NewsRealeaseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="News" EntityType="NewsRealeaseModel.News" />
+    <EntitySet Name="NewsType" EntityType="NewsRealeaseModel.NewsType" />
+    <EntitySet Name="Users" EntityType="NewsRealeaseModel.Users" />
+    <AssociationSet Name="FK_NEWS_REFERENCE_NEWSTYPE" Association="NewsRealeaseModel.FK_NEWS_REFERENCE_NEWSTYPE">
+      <End Role="NewsType" EntitySet="NewsType" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_REFERENCE_USERS" Association="NewsRealeaseModel.FK_NEWS_REFERENCE_USERS">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="type_id" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="news_title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="news_content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="news_time" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="news_flag" Type="Int32" />
+    <NavigationProperty Name="NewsType" Relationship="NewsRealeaseModel.FK_NEWS_REFERENCE_NEWSTYPE" FromRole="News" ToRole="NewsType" />
+    <NavigationProperty Name="Users" Relationship="NewsRealeaseModel.FK_NEWS_REFERENCE_USERS" FromRole="News" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="NewsType">
+    <Key>
+      <PropertyRef Name="type_id" />
+    </Key>
+    <Property Name="type_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="type_name" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="type_flag" Type="Int32" />
+    <NavigationProperty Name="News" Relationship="NewsRealeaseModel.FK_NEWS_REFERENCE_NEWSTYPE" FromRole="NewsType" ToRole="News" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="user_loginName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="user_psw" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="user_realName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="user_flag" Type="Int32" />
+    <NavigationProperty Name="News" Relationship="NewsRealeaseModel.FK_NEWS_REFERENCE_USERS" FromRole="Users" ToRole="News" />
+  </EntityType>
+  <Association Name="FK_NEWS_REFERENCE_NEWSTYPE">
+    <End Role="NewsType" Type="NewsRealeaseModel.NewsType" Multiplicity="0..1" />
+    <End Role="News" Type="NewsRealeaseModel.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsType">
+        <PropertyRef Name="type_id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_REFERENCE_USERS">
+    <End Role="Users" Type="NewsRealeaseModel.Users" Multiplicity="0..1" />
+    <End Role="News" Type="NewsRealeaseModel.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

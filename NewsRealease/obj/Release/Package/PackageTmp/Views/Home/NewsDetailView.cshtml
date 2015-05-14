@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "NewsDetailView";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+
+
+    NewsRealease.DAL.MODEL.NewsShow news = new NewsRealease.DAL.MODEL.NewsShow();
+    if (ViewData["news"] != null)
+    {
+        news = ViewData["news"] as NewsRealease.DAL.MODEL.NewsShow;
+    }
+
+}
+
+<!--中间内容 start-->
+<div class="container">
+
+    <div class="row">
+        <div class="divhrwhite"></div>
+        <div class="divhrblack"></div>
+        <div class="divrwhite"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2 class="text-center">@news.news_title</h2>
+            <span class="pull-left" style="margin-left: 25px;">@news.author</span>
+            <span class="pull-right" style="margin-right: 25px;">发表时间：@news.news_time</span>
+            <div class="jumbotron bg-white">
+                <p>
+                    @Html.Raw(news.news_content)
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--中间内容 end -->
+

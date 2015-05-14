@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "AllNewsView";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+
+
+    List<NewsRealease.DAL.MODEL.NewsShow> news = new List<NewsRealease.DAL.MODEL.NewsShow>();
+    if (ViewData["news"] != null)
+    {
+        news = ViewData["news"] as List<NewsRealease.DAL.MODEL.NewsShow>;
+    }     
+}
+
+
+<!--中间内容 start-->
+<div class="container">
+
+    <div class="row">
+        <table class="table  table-hover">
+            <thead>
+                <tr class="warning">
+                    <td>新闻编号</td>
+                    <td>新闻标题</td>
+                    <td>发布时间</td>
+                    <td>发布人</td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr></tr>
+            </tfoot>
+            <tbody>
+                @foreach (NewsRealease.DAL.MODEL.NewsShow n in news)
+                {
+                    <tr>
+                        <td>@n.news_id</td>
+                        <td>@Html.ActionLink(n.news_title, "NewsDetailView", "Home", new { newsID = n.news_id }, new { })</td>
+                        <td>@n.news_time</td>
+                        <td>@n.author</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!--分页 start-->
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-5">
+
+            <ul class="pagination">
+                <li>
+                    <a href="#">&laquo;</a>
+                </li>
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>
+                    <a href="#">5</a>
+                </li>
+                <li>
+                    <a href="#">&raquo;</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+<!--中间内容 end -->
+

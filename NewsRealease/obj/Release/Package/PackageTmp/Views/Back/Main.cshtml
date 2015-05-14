@@ -1,0 +1,80 @@
+﻿@model NewsRealease.DAL.DB.Users
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div style="width: 90%; margin: 0,auto;">
+
+    <div style="float: left; width: 29%; border: 1px solid #0094ff;">
+        <table>
+            <tr>
+                <td colspan="2"><a href="#" onclick="ShowTable('tableUser')">用户管理</a></td>
+            </tr>
+            <tr>
+                <td style="width: 5px;"></td>
+                <td>
+                    <table id="tableUser">
+                        <tr>
+                            <td><a href="#" onclick="ChgView('/User/AddUserView')">添加用户</a>
+                        </tr>
+                        <tr>
+                            <td><a href="#" onclick="ChgView('/User/ModifyUsers')">修改用户</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td colspan="2"><a href="#" onclick="ShowTable('tableArticle')">文章管理</a></td>
+            </tr>
+            <tr>
+                <td style="width: 5px;"></td>
+                <td>
+                    <table id="tableArticle">
+                        <tr>
+                            <td>
+                                <a href="#" onclick="ChgView('/News/AddNewsView')">发布文章</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" onclick="ChgView('/News/ModifyNewsView')">修改文章</a></td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div id="MainDiv" style="float: left; width: 69%; border: 1px solid #0094ff;"><span style="text-align:center;">欢迎进入后台管理</span></div>
+</div>
+
+<script type="text/javascript">    
+
+    function ShowTable(tableName)
+    {
+        var showFlag = document.getElementById(tableName).style.display;        
+        if  (showFlag=="")
+            document.getElementById(tableName).style.display = "none";
+        else
+            document.getElementById(tableName).style.display = "";
+    }
+
+    function ChgView(url) {
+        $.ajax({
+            type: "Get",
+            url: url,
+            data: "",
+            success: function (data) {
+                $("#MainDiv").html(data);
+            }
+        });
+    }
+</script>
+

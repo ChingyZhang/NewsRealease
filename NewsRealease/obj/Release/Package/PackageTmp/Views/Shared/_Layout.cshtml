@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    @*//调用jq*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    /@*/调用ajax*@
+    <script src="~/Scripts/js/helper.js"></script>
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <script src="~/Scripts/js/fileupload.js"></script>
+
+    @*插件js*@
+    <script src="~/Plugin/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="~/Plugin/tinymce/js/tinymce/tinymce.min.js"></script>
+
+    @*后台界面引入文件*@
+    <script src="~/Scripts/js/html5.js"></script>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/manager.css" rel="stylesheet" />
+    <link href="~/Content/css/classhome.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="body">
+        <section>
+            @RenderBody()
+        </section>
+    </div>
+
+</body>
+
+</html>

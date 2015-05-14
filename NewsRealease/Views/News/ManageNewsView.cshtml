@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "ManageNewsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<NewsRealease.DAL.MODEL.NewsShow> newsList = new List<NewsRealease.DAL.MODEL.NewsShow>();
+    if (ViewData["news"] != null)
+    {
+        newsList = ViewData["news"] as List<NewsRealease.DAL.MODEL.NewsShow>;
+    }
+}
+
+<div id="MainDiv" class="container content-main">
+    <div class="row ">
+        <table id="table" class="table table-bordered table-hover table-margin">
+            <thead>
+                <tr>
+                    <th>新闻编号</th>
+                    <th>新闻标题</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (NewsRealease.DAL.MODEL.NewsShow news in newsList)
+                {
+                    <tr  id="tr@(news.news_id)">
+                        <td>@news.news_id</td>
+                        <td>@news.news_title</td>
+                        <td>
+                            @news.news_time
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary" value="删除" onclick="RemoveNews(@news.news_id)" />
+                            <input type="button" class="btn btn-primary" value="修改" onclick="ChgNews(@news.news_id)" />
+                        </td>
+                    </tr>
+                }
+
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    function ModifyNews(newsID)
+    {        
+        $.ajax({
+            type:"Post",
+            url:"/Note/ModifyNoteView",
+            data:{n_id:noteID},
+            success:function(data){
+                $("#noteDiv").html(data);
+            },
+            error:function(data)
+            {
+                alert(data);
+            }
+        });
+    }
+    function RemoveNews(newsID)
+    {
+        $.ajax({
+            type: "Post",
+            url: "/News/RemoveNews",
+            data: { newsID: newsID },
+            success: function (data) {                                
+                var table = document.getElementById("table");
+                var trs = table.getElementsByTagName("tr");
+                for (var i = trs.length - 1; i > 0; i--) {
+                    var id = "tr" + newsID;
+                    if (id == trs[i].id) {
+                        table.deleteRow(i);
+                        alert("删除成功");
+                    }
+                }
+            }
+
+        });
+    }
+
+    function ChgNews(newsID)
+    {
+        $.ajax({
+            type: "Post",
+            url: "/News/ModifyNewsView",
+            data: { newsID: newsID },
+            success: function (data) {
+                $("#MainDiv").html(data);
+            }
+
+        });
+    }
+</script>

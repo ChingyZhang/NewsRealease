@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsRealease", "NewsRealease\NewsRealease.csproj", "{D0025FC9-02DF-48A7-A738-C964F6D34FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsRealease.BLL", "NewsRealease.BLL\NewsRealease.BLL.csproj", "{B3F4D971-95D5-43DA-BABE-80324D42DCB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsRealease.DAL", "NewsRealease.DAL\NewsRealease.DAL.csproj", "{0A9CB608-198C-431E-A7C0-E95DF619FEF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0025FC9-02DF-48A7-A738-C964F6D34FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0025FC9-02DF-48A7-A738-C964F6D34FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0025FC9-02DF-48A7-A738-C964F6D34FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0025FC9-02DF-48A7-A738-C964F6D34FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F4D971-95D5-43DA-BABE-80324D42DCB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F4D971-95D5-43DA-BABE-80324D42DCB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F4D971-95D5-43DA-BABE-80324D42DCB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F4D971-95D5-43DA-BABE-80324D42DCB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9CB608-198C-431E-A7C0-E95DF619FEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9CB608-198C-431E-A7C0-E95DF619FEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9CB608-198C-431E-A7C0-E95DF619FEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9CB608-198C-431E-A7C0-E95DF619FEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

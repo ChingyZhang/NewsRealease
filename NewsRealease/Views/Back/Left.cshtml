@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>left</title>
+  <META http-equiv=Content-Type content="text/html; charset=utf-8">
+  <style type=text/css> 
+{
+  FONT-SIZE: 12px
+}
+#menutree A {
+  COLOR: #566984; TEXT-DECORATION: none
+}
+</style>
+  <META content="MShtml 6.00.2900.5848" name=GENERATOR></head>
+<body 
+style="BACKGROUND-POSITION-Y: -120px; BACKGROUND-IMAGE: url(/Images/img/bg.gif); BACKGROUND-REPEAT: repeat-x">
+  <table height="100%" cellSpacing=0 cellPadding=0 width="100%">
+    <tbody>
+      <tr>
+        <td width=10 height=29>
+          <img src="/Images/img/bg_left_tl.gif"></td>
+        <td style="FONT-SIZE: 18px; BACKGROUND-IMAGE: url(/Images/img/bg_left_tc.gif); COLOR: white; FONT-FAMILY: system">
+         <strong>第12组大作业</strong> 
+        </td>
+        <td width=10>
+          <img src="/Images/img/bg_left_tr.gif"></td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-IMAGE: url(/Images/img/bg_left_ls.gif)"></td>
+        <td id=menutree 
+    style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; HEIGHT: 100%; BACKGROUND-COLOR: white" 
+    vAlign=top></td>
+        <td style="BACKGROUND-IMAGE: url(/Images/img/bg_left_rs.gif)"></td>
+      </tr>
+      <tr>
+        <td width=10>
+          <img src="/Images/img/bg_left_bl.gif"></td>
+        <td style="BACKGROUND-IMAGE: url(/Images/img/bg_left_bc.gif)"></td>
+        <td width=10>
+          <img src="/Images/img/bg_left_br.gif"></td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="~/Scripts/js/TreeNode.js" type=text/javascript></script>
+  <script src="~/Scripts/js/Tree.js" type=text/javascript></script>
+  <script type=text/javascript>
+      var img_path = "/Images/img/";
+      var tree = null;
+      var root = new TreeNode('系统菜单');
+      //案例管理start
+      var fun1 = new TreeNode('人员管理');
+      var fun2 = new TreeNode('添加用户', '/User/AddUserView', 'tree_node.gif', null, 'tree_node.gif', null);
+      fun1.add(fun2);
+      var fun43 = new TreeNode('用户管理', '/User/ManageUserView', 'tree_node.gif', null, 'tree_node.gif', null);
+      fun1.add(fun43);
+      var fun3 = new TreeNode('修改密码', '/User/ResetPswView', 'tree_node.gif', null, 'tree_node.gif', null);
+      fun1.add(fun3);
+      root.add(fun1);
+      //案例管理管理end
+
+      var fun10 = new TreeNode('新闻管理');
+      var fun102 = new TreeNode('查看新闻', '/News/ManageNewsView', 'tree_node.gif', null, 'tree_node.gif', null);
+      fun10.add(fun102);
+      var fun101 = new TreeNode('添加新闻', '/News/AddNewsView', 'tree_node.gif', null, 'tree_node.gif', null);
+      fun10.add(fun101);
+      root.add(fun10);
+
+      Tree = new Tree(root);
+      Tree.show('menutree');
+</script>
+</body>
+</html>

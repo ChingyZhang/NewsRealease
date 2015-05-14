@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "ResetPswView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="input-group">
+    <span class="input-group-addon">原密码：</span>
+    <input name="oldPsw" id="oldPsw" class="form-control" type="password" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="input-group">
+    <span class="input-group-addon">新密码：</span>
+    <input name="psw" id="psw" class="form-control" type="password" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="input-group">
+    <span class="input-group-addon">确认密码：</span>
+    <input name="user_psw" id="user_psw" class="form-control" type="password" />
+</div>
+<div class="divhrwhite"></div>
+
+
+<div class="col-md-2">
+    <button class="btn btn-primary" type="button" onclick="ResetPsw()">提交</button>
+</div>
+
+<script type="text/javascript">
+    function ResetPsw() {
+        var oldPsw = $("#oldPsw").val();
+        var psw = $("#psw").val();
+        var user_psw = $("#user_psw").val();
+        if (psw == user_psw) {
+            if (psw=="") {
+                alert("密码不能为空");
+                return;
+            }
+            if (oldPsw == "") {
+                alert("原密码不能为空");
+                return;
+            }
+            $.ajax({
+                type: "Post",
+                url: "/User/ResetPsw",
+                data: { oldPsw: oldPsw, psw: psw },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        }
+        else {
+            alert("两次密码不匹配");
+            $("#psw").val("");
+            $("#user_psw").val("");
+        }
+
+    }
+</script>

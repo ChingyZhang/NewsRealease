@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NewsRealeaseModelStoreContainer" CdmEntityContainer="NewsRealeaseEntities">
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="NewsRealeaseModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="news_content" ColumnName="news_content" />
+          <ScalarProperty Name="news_time" ColumnName="news_time" />
+          <ScalarProperty Name="news_flag" ColumnName="news_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsType">
+      <EntityTypeMapping TypeName="NewsRealeaseModel.NewsType">
+        <MappingFragment StoreEntitySet="NewsType">
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="type_flag" ColumnName="type_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="NewsRealeaseModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_loginName" ColumnName="user_loginName" />
+          <ScalarProperty Name="user_psw" ColumnName="user_psw" />
+          <ScalarProperty Name="user_realName" ColumnName="user_realName" />
+          <ScalarProperty Name="user_flag" ColumnName="user_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

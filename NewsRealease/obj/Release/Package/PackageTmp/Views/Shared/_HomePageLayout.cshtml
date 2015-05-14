@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>十二组网站</title>
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/classhome.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="nav-background">
+        <!--导航条 start-->
+        <div class="container blog-masthead">
+            <nav class="navbar" role="navigation">
+                <!-- 手机适配 -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle icon-block" data-toggle="collapse" data-target="#smart-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">十二组网站</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="smart-navbar-collapse-1">
+                    <ul class="nav navbar-nav mynav">
+                        <li class="active">
+                            @Html.ActionLink("首页", "Index", "Home")
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink("国内新闻", "AllNewsView", "Home", new { typeID = 1 }, new { })
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink("国际新闻", "AllNewsView", "Home", new { typeID = 2 }, new { })
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink("校内新闻", "AllNewsView", "Home", new { typeID = 3 }, new { })
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav mynav-right navbar-right">
+                        <li>
+                            @Html.ActionLink("登录", "LoginView", "Back")
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+    </div>
+    <!--导航条 end-->
+
+
+
+    <div class="divhrwhiter"></div>
+    <div class="divhrwhiter"></div>
+    <div class="divhrwhiter"></div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <!--footer start -->
+    <div class="footer col-md-12">
+        <div class="col-md-4 col-md-offset-4 footers-margin">
+            <ul class="list-inline list-unstyled">
+                <li>
+                第十二组网站<li>
+                <li>开发人员：第十二组的小伙伴</li>
+                <li>友情赞助：温州医学院</li>
+            </ul>
+            <ul class="list-inline list-unstyled">
+                <li>Copyright:第十二小组 2014 ALL Rights </li>
+                <li>技术支持：第十二小组</li>
+            </ul>
+        </div>
+    </div>
+    <!--footer end-->
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <script src="~/Scripts/js/jquery-1.11.0.js"></script>
+    <script src="~/Scripts/js/html5.js"></script>
+</body>
+</html>

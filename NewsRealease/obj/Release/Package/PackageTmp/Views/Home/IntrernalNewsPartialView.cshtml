@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "IntrernalNewsPartialView";
+
+    List<NewsRealease.DAL.MODEL.NewsShow> news = new List<NewsRealease.DAL.MODEL.NewsShow>();
+    if (ViewData["news"] != null)
+    {
+        news = ViewData["news"] as List<NewsRealease.DAL.MODEL.NewsShow>;
+    }        
+}
+<div class="row">
+
+    <!--通知 start-->
+    <div class="col-md-5">
+        <ul class="list-group">
+            @foreach (NewsRealease.DAL.MODEL.NewsShow n in news)
+            {
+                <li class="list-group-item">@Html.ActionLink(n.news_title, "NewsDetailView", "Home", new { newsID = n.news_id }, new { })-------时间：@n.news_time.ToString()</li>    
+            }
+        </ul>
+    </div>
+    <!--通知 end-->
+
+
+
+    <div class="col-md-1">
+        <h1 class="text-center">国
+        </h1>
+        <h1 class="text-center">内
+        </h1>
+        <h1 class="text-center">新
+        </h1>
+        <h1 class="text-center">闻
+        </h1>
+    </div>
+
+    <!--照片start-->
+    <div class="col-md-6">
+
+        <img src="../../Images/img/1.jpg" style="width: 100%; height: 250px;">
+    </div>
+
+    <!--照片 end-->
+
+
+</div>

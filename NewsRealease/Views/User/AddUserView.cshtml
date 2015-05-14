@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "AddUserView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="input-group">
+    <span class="input-group-addon">登录名：</span>
+    <input name="user_loginName" id="user_loginName" class="form-control" type="text" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="input-group">
+    <span class="input-group-addon">密码：</span>
+    <input name="psw" id="psw" class="form-control" type="password" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="input-group">
+    <span class="input-group-addon">确认密码：</span>
+    <input name="user_psw" id="user_psw" class="form-control" type="password" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="input-group">
+    <span class="input-group-addon">真实姓名：</span>
+    <input name="user_realName" id="user_realName" class="form-control" type="text" />
+</div>
+<div class="divhrwhite"></div>
+
+<div class="col-md-2">
+    <button class="btn btn-primary" type="button" onclick="AddUser()">提交</button>
+</div>
+
+
+
+
+<script type="text/javascript">
+    function AddUser() {
+        var psw = $("#psw").val();
+        var user_psw = $("#user_psw").val();
+        var user_realName = $("#user_realName").val();
+        var user_loginName = $("#user_loginName").val();
+        if (psw == user_psw) {
+            if (psw=="") {
+                alert("密码不能为空");
+                return;
+            }
+            if (user_realName == "") {
+                alert("事实姓名不能为空");
+                return;
+            }
+            if (user_loginName == "") {
+                alert("登录名不能为空");
+                return;
+            }            
+
+            $.ajax({
+                type: "Post",
+                url: "/User/AddUser",
+                data: { user_loginName: user_loginName, user_psw: user_psw, user_realName: user_realName },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        }
+        else {
+            alert("两次密码不匹配");
+            $("#psw").val("");
+            $("#user_psw").val("");
+        }
+
+    }
+</script>
